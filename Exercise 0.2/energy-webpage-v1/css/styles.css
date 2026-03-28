@@ -80,7 +80,13 @@ nav .links a:focus {
     outline-offset: 4px;
 }
 
+/* Configure margin so it doesn't start from edge */
+main {
+    margin: 1.2em;
+}
 
+
+/* Highlight the footer */
 footer {
     display: grid;
     place-items: center;
@@ -91,3 +97,4 @@ footer {
     width: fit-content;
     padding: 0.1em 1em;
 }
+

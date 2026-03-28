@@ -2,6 +2,7 @@
 <head>
     <title>Energy Webpage - Televisions</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/tv.css">
 </head>
 <body id="televisions" onload="displayTVList()">
     
@@ -32,7 +33,22 @@
 
         <section id="tvList">
             <!-- The following div is used so that all elements can go inside it, and be styled as flex -->
-            <div></div> 
+            <div class="items"></div> 
+        </section>
+
+        <section id="dialog">
+            <dialog id="tv-dialog" closedBy="any">
+                <h2 id="tv-name"></h2>
+                <div class="info-grid">
+                    <div><b>Price:</b><span id="tv-price"></span></div>
+                    <div><b>Screen Size:</b><span id="tv-size"></span></div>
+                    <div><b>Energy Rating:</b><span id="tv-rating"></span></div>
+                    <div><b>Technology:</b><span id="tv-tech"></span></div>
+                </div>
+                <p id="tv-desc"></p>
+
+                <button commandfor="tv-dialog" command="close">Close</button>
+            </dialog>
         </section>
     </main>
 
@@ -45,4 +61,5 @@
     </footer>
 
 </body>
+<script src="./js/scripts.js"></script>
 </html>
