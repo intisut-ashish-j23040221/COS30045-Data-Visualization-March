@@ -110,7 +110,7 @@ Artificial Intelligence (AI) tools have been used to assist with aspects of this
 
 - Ensuring my own ideas are understandble and coherent for the story telling.
 - Generating boilerplate code to improve productivity
-- Assisting with documentation writing
+- Assisting with generating a summary for the story telling
 
 All AI-generated assistance was reviewed, modified where necessary, and integrated responsibly into the project. For this assignment, AI was not used to generate ideas, but 
 to improve upon existing ideas that I gave.
