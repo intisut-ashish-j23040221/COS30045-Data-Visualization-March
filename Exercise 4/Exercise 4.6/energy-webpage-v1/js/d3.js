@@ -23,8 +23,25 @@ d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Mode
 
 
 // Exercise 4.5
-const createBarChart = data => {
+const createBarChartOld = data => {
     const svg = d3.select("#e4 .responsive-svg-container").append("svg").attr("viewBox", "0 0 1200 1600").style("border", "1px solid black");
+    svg.selectAll("rect").data(data).join("rect")
+        .attr("class", d => {
+            console.log(d);
+            return `bar bar-${d.count}`;
+        })
+        .attr("width", d => d.count)
+        .attr("height", 20)
+        .attr("x", 20)
+        .attr("y", (d, i) => i*20 + (i + 5)*5);
+}
+
+d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] })).then(d => createBarChartOld(d.sort((a, b) => b.count - a.count)));
+
+
+// Exercise 4.5
+const createBarChart = data => {
+    const svg = d3.select("#e5 .responsive-svg-container").append("svg").attr("viewBox", "0 0 1200 1600").style("border", "1px solid black");
     svg.selectAll("rect").data(data).join("rect")
         .attr("class", d => {
             console.log(d);
