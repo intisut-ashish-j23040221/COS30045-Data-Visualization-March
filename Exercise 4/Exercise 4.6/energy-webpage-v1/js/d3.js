@@ -39,7 +39,7 @@ const createBarChartOld = data => {
 d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] })).then(d => createBarChartOld(d.sort((a, b) => b.count - a.count)));
 
 
-// Exercise 4.5
+// Exercise 4.6 and 4.7
 const createBarChart = data => {
     const width = 500;
     const height = 1600;
@@ -53,7 +53,9 @@ const createBarChart = data => {
         .padding(0.1);
         
     const svg = d3.select("#e5 .responsive-svg-container").append("svg").attr("viewBox", `0 0 ${width} ${height}`).style("border", "1px solid black");
-    svg.selectAll("rect").data(data).join("rect")
+    const barAndLabel = svg.selectAll("g").data(data).join("g").attr("transform", d => `translate(0, ${yScale(d.brand)})`);
+    
+    barAndLabel.append("rect")
         .attr("class", d => {
             console.log(d);
             return `bar bar-${d.count}`;
@@ -61,7 +63,7 @@ const createBarChart = data => {
         .attr("width", d => xScale(d.count))
         .attr("height", d => yScale.bandwidth())
         .attr("x", 20)
-        .attr("y", d => yScale(d.brand));
+        .attr("y", 0);
 }
 
 d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] })).then(d => createBarChart(d.sort((a, b) => b.count - a.count)));
