@@ -7,6 +7,5 @@ svg.append("rect").attr("x", 10).attr("y", 10).attr("width", 414).attr("height",
 
 
 // Exercise 4.4
-d3.csv("../data/newDataTV.csv", d => {
-  console.log(d); 
-});
+d3.csv("./data/newDataTV.csv", d => ({ Brand_Reg: d.Brand_Reg, "Count(Model_No)": +d["Count(Model_No)"] }))
+    .then(d => { console.log(d) });
