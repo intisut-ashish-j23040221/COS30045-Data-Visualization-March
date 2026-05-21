@@ -22,8 +22,8 @@ function createTimeSeriesLineChart(data) {
     const svg = d3.select(".responsive-svg-container.lineChart")
         .append("svg")
         .attr("preserveAspectRatio", "xMidYMid meet")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom);
+        .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+        .attr("width", "100%")
 
     const group = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);

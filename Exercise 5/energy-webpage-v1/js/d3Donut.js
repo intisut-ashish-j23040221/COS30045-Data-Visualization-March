@@ -1,8 +1,8 @@
 const createDonutChart = data => {
     // 1. Set up dimensions 
-    const width = 500;
-    const height = 500;
-    const margin = 50;
+    const width = 400;
+    const height = 200;
+    const margin = 40;
 
     // The radius of the pie chart is half the smallest dimension minus margins
     const radius = Math.min(width, height) / 2 - margin;
@@ -11,9 +11,9 @@ const createDonutChart = data => {
     const svg = d3.select(".responsive-svg-container.donutChart") // Change to your container ID
         .append("svg")
         .attr("preserveAspectRatio", "xMidYMid meet")
-        .attr("width", width / 2)
-        .attr("height", 100);
-
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("width", "100%")
+        
     // 3. Center the 'g' group container
     // Pie charts are drawn relative to (0,0), so we center the group in the middle of the canvas
     const group = svg.append("g")
@@ -55,6 +55,10 @@ const createDonutChart = data => {
         .innerRadius(radius * 0.7) 
         .outerRadius(radius * 0.7);
 
+    function midAngle(d) {
+        return d.startAngle + (d.endAngle - d.startAngle) / 2;
+    }
+
     const labelGroups = group.selectAll(".slice-label-group")
         .data(pie(data))
         .enter()
@@ -64,29 +68,31 @@ const createDonutChart = data => {
 
     labelGroups.append("text")
         .attr("class", "slice-label")
-        .attr("y", -4)
+        .attr("y", -1)
+        .attr("x", d => midAngle(d) < Math.PI ? 5 : -5)
         .attr("text-anchor", "middle")
         .style("font-family", "sans-serif")
-        .style("font-size", "12px")
+        .style("font-size", "6px")
         .style("font-weight", "600")
         .style("fill", "#fff")
         .text(d => d.data.tech); 
 
     labelGroups.append("text")
         .attr("class", "slice-label")
-        .attr("y", 12)
+        .attr("y", 6)
         .attr("text-anchor", "middle")
+        .attr("x", d => midAngle(d) < Math.PI ? 5 : -5)
         .style("font-family", "sans-serif")
-        .style("font-size", "12px")
+        .style("font-size", "6px")
         .style("font-weight", "600")
         .style("fill", "#fff")
         .text(d => ((d.data.power / data.map(r => r.power).reduce((p,c) => c+p)) * 100).toFixed(2) + "%");
 
     group.append("text")
         .text("Power Consumption across Screen Tech")
-        .attr("y", -1 * height / 2 + 40)
+        .attr("y", -1 * height / 2 + 30)
         .style("font-family", "sans-serif")
-        .style("font-size", "16px") 
+        .style("font-size", "10px") 
         .style("font-weight", 600) 
         .style("text-anchor", "middle") 
 }
