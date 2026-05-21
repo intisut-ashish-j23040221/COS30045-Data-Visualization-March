@@ -45,11 +45,11 @@ const createBarChart = data => {
     const height = 1600;
     const xScale = d3.scaleLinear()
         .domain([0, Math.max(...data.map(d => d.count))])
-        .range([0, width - 200]);
+        .range([0, width - 120]);
 
     const yScale = d3.scaleBand()
         .domain(data.map(d => d.brand))
-        .range([0, height - 50])
+        .range([0, height])
         .padding(0.1);
         
     const svg = d3.select("#e5 .responsive-svg-container").append("svg").attr("viewBox", `0 0 ${width} ${height}`).style("border", "1px solid black");
@@ -60,10 +60,29 @@ const createBarChart = data => {
             console.log(d);
             return `bar bar-${d.count}`;
         })
+        .attr("fill", "#999242")
         .attr("width", d => xScale(d.count))
-        .attr("height", d => yScale.bandwidth())
-        .attr("x", 20)
+        .attr("height", yScale.bandwidth())
+        .attr("x", 100)
         .attr("y", 0);
+
+    barAndLabel
+        .append("text")
+        .text(d => d.brand)
+        .attr("x", 95)
+        .attr("y", yScale.bandwidth() / 2 + 2.5)
+        .attr("text-anchor", "end")
+        .style("font-family", "sans-serif")
+        .style("font-size", "5px");
+
+    barAndLabel
+        .append("text")
+        .text(d => d.count)
+        .attr("x", d => 100 + xScale(d.count) + 4)
+        .attr("y", yScale.bandwidth() / 2 + 2.5)
+        .style("font-family", "sans-serif")
+        .style("font-size", "5px")
+        .style("font-weight", "800");
 }
 
 d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] })).then(d => createBarChart(d.sort((a, b) => b.count - a.count)));
