@@ -44,8 +44,13 @@ const createBarChart = data => {
     const width = 500;
     const height = 1600;
     const xScale = d3.scaleLinear()
-        .domain([0, 1310])
-        .range([0, width]);
+        .domain([0, Math.max(...data.map(d => d.count))])
+        .range([0, width - 200]);
+
+    const yScale = d3.scaleBand()
+        .domain(data.map(d => d.brand))
+        .range([0, height - 50])
+        .padding(0.1);
         
     const svg = d3.select("#e5 .responsive-svg-container").append("svg").attr("viewBox", `0 0 ${width} ${height}`).style("border", "1px solid black");
     svg.selectAll("rect").data(data).join("rect")
@@ -53,10 +58,10 @@ const createBarChart = data => {
             console.log(d);
             return `bar bar-${d.count}`;
         })
-        .attr("width", d => d.count)
-        .attr("height", 20)
+        .attr("width", d => xScale(d.count))
+        .attr("height", d => yScale.bandwidth())
         .attr("x", 20)
-        .attr("y", (d, i) => i*20 + (i + 5)*5);
+        .attr("y", d => yScale(d.brand));
 }
 
 d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] })).then(d => createBarChart(d.sort((a, b) => b.count - a.count)));
