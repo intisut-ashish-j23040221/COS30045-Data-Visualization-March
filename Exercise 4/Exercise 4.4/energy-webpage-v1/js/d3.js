@@ -7,13 +7,18 @@ svg.append("rect").attr("x", 10).attr("y", 10).attr("width", 414).attr("height",
 
 
 // Exercise 4.4
-d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] }))
-    .then(data => { 
-        console.log(data);
-        console.log(data.length);
-        console.log(d3.max(data, d => d.count));
-        console.log(d3.min(data, d => d.count));
-        console.log(d3.extent(data, d => d.count));
+const createBarChart = (data) => {
+    console.log(data);
+    console.log(data.length);
+    console.log(d3.max(data, d => d.count));
+    console.log(d3.min(data, d => d.count));
+    console.log(d3.extent(data, d => d.count));
 
-        console.log(data.sort((a, b) => b.count - a.count));
-    });
+    console.log(data.sort((a, b) => b.count - a.count));
+
+    for (let y of data) {
+        d3.select("#e3 .responsive-svg-container").append("p").text(`Brand: ${y.brand} - Count: ${y.count}`);
+    }
+}
+
+d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] })).then(createBarChart);
