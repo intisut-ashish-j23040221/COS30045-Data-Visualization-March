@@ -51,3 +51,10 @@ div.placement {
 div.hidden {
     display: none;
 }
+
+.responsive-svg-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    max-width: 1200px;
+}
