@@ -23,7 +23,7 @@ function createScatterPlot(data) {
         .range([0, width]);
 
     const yScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.power)])
+        .domain([0, d3.max(data, d => d.power) + 50])
         .range([height, 0]);
 
     const xAxis = d3.axisBottom(xScale)
@@ -50,22 +50,7 @@ function createScatterPlot(data) {
         .attr("r", 6)                       // Radius of the circle point
         .attr("fill", "crimson")            // Accent color for dots
         .attr("stroke", "#fff")             // White border around dots to make them pop
-        .attr("stroke-width", "1.5px");
-
-    // 6. Add Value Labels directly above the plotted points
-    group.selectAll(".dot-label")
-        .data(data)
-        .enter()
-        .append("text")
-        .attr("class", "dot-label")
-        .attr("x", d => xScale(d.star))
-        .attr("y", d => yScale(d.power) - 10) // Position 10px directly above the circle marker
-        .attr("text-anchor", "middle")
-        .style("font-family", "sans-serif")
-        .style("font-size", "10px")
-        .style("font-weight", "600")
-        .style("fill", "#333")
-        .text(d => Math.round(d.power));
+        .attr("stroke-width", ".5px");
 
     // --- Your exact Text Labels & Titles ---
     // Chart Title
@@ -100,4 +85,4 @@ function createScatterPlot(data) {
         .style("transform", "rotate(270deg)");
 }
 
-d3.csv("./data/ScatterPlot.csv", d => ({ star: d.Star2, power: +d["Mean(Avg_mode_power)"] })).then(d => createScatterPlot(d.sort((a, b) => b.power - a.power)));
+d3.csv("./data/ScatterPlot.csv", d => ({ star: d.Star2, power: +d["Avg_mode_power"] })).then(d => createScatterPlot(d.sort((a, b) => b.power - a.power)));
