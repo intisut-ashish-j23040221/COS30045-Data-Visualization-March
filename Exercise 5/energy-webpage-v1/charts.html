@@ -2,7 +2,7 @@
 <head>
     <title>Energy Webpage - SVGs</title>
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/svg.css">
+    <link rel="stylesheet" href="./css/chart.css">
 </head>
 <body id="home">
     
@@ -30,15 +30,19 @@
         <div class="flex">
             <div>
                 <h2>Scatter Plot</h2>
+                <div class="responsive-svg-container scatterPlot"></div>
             </div>
             <div>
                 <h2>Donut Chart</h2>
+                <div class="responsive-svg-container donutChart"></div>
             </div>
             <div>
                 <h2>Bar Chart</h2>
+                <div class="responsive-svg-container barChart"></div>
             </div>
             <div>
                 <h2>Line Chart</h2>
+                <div class="responsive-svg-container lineChart"></div>
             </div>
         </div>
 
@@ -55,6 +59,9 @@
 </body>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="./js/scripts.js"></script>
-<script src="./js/d3.js"></script>
-<script src="./js/svg.js"></script>
+<script src="./js/d3Bar.js"></script>
+<script src="./js/d3Donut.js"></script>
+<script src="./js/d3Line.js"></script>
+<script src="./js/d3Scatter.js"></script>
+
 </html>
