@@ -31,7 +31,9 @@ const createBarChart = data => {
             return `bar bar-${d.count}`;
         })
         .attr("width", d => d.count)
-        .attr("height", 20);
+        .attr("height", 20)
+        .attr("x", 20)
+        .attr("y", (d, i) => i*20 + (i + 5)*5);
 }
 
 d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] })).then(d => createBarChart(d.sort((a, b) => b.count - a.count)));
