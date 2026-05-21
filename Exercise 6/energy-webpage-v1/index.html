@@ -1,9 +1,10 @@
 <html>
 <head>
-    <title>Energy Webpage - Home</title>
+    <title>Energy Webpage - Televisions</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/tv.css">
 </head>
-<body id="home">
+<body id="televisions" onload="displayTVList()">
     
     <!-- Header links -->
     <div class="nav">
@@ -13,12 +14,13 @@
                 <h1>Energy Webpage</h1>
             </div>
             <div class="links">
-                <a href="index.html" class="active">Home</a>
-                <a href="televisions.html">Televisions</a>
+                <a href="index.html">Home</a>
+                <a href="televisions.html" class="active">Televisions</a>
                 <a href="about.html">About Us</a>
                 <a href="storyboards.html">Storyboards</a>
                 <a href="svg.html">SVG</a>
                 <a href="charts.html">Charts</a>
+                <a href="histogram.html">Histogram</a>
             </div>
         </nav>
     </div>
@@ -26,42 +28,31 @@
     <!-- Main section -->
     <main>
         <section>
-            <h2>Energy Televisions</h2>
+            <h2>Our Televisions</h2>
             <p>
-                We sell energy-efficient TVs. With our brand new technology, our new TV line up now feature a new
-                power-saving mode, where the screen is able to dynamically adjust the brightness and pixels after a while 
-                of no interactivity!
+                Check out what our business has to offer, we sell energy-efficient televisions that range from various 
+                price ranges, but maintaining good quality.
             </p>
         </section>
 
-        <section>
-            <h2>Why are energy-efficient products important?</h2>
-            <p>
-                In Australia, all televisions are required to display an <b>Energy Rating Label</b>, which uses a star system to help 
-                you compare the efficiency of different TV models. The star rating (ranging from 1 to 10) indicates how efficient 
-                a TV is compared to other models of a similar screen size. The higher number of stars, the better. Below the stars, 
-                you will find the Energy Consumption figure, measured in kilowatt-hours (kWh) per year. This number is calculated 
-                based on standardized testing that assumes the TV is used for 10 hours a day and remains in standby for the other 
-                14 hours. By looking at the kWh figure, you can easily estimate your annual running costs by multiplying it by your 
-                local electricity tariff.
-            </p>
-            <p>
-                Choosing an energy-efficient television is important because it offers significant benefits for both you in 
-                terms of finance, and the planet. From a financial perspective, a high-efficiency TV can save you hundreds of 
-                dollars in electricity bills over its lifespan compared to lower-rated models. As a result, anyone who uses 
-                these energy-efficient TVs are able to reduce their household's carbon footprint which in turn helps the environment. 
-                Since a large portion of Australia's electricity is still generated from fossil fuels, opting for a TV that uses 
-                less power helps reduce greenhouse gas emissions and supports the national transition toward a more sustainable 
-                energy future.
-            </p>
-            <p>For more information, you may visit the following sites:</p>
-            <nav>
-                <ul>
-                    <li><a href="https://www.energyrating.gov.au/consumer-information/understand-energy-rating-label">Understand the Energy Rating Label</a></li>
-                    <li><a href="https://www.energy.gov.au/households/appliances">Household Appliances</a></li>
-                    <li><a href="https://www.energyrating.gov.au/calculator">Energy Rating Calculator</a></li>
-                </ul>
-            </nav>
+        <section id="tvList">
+            <!-- The following div is used so that all elements can go inside it, and be styled as flex -->
+            <div class="items"></div> 
+        </section>
+
+        <section id="dialog">
+            <dialog id="tv-dialog" closedBy="any">
+                <h2 id="tv-name"></h2>
+                <div class="info-grid">
+                    <div><b>Price:</b><span id="tv-price"></span></div>
+                    <div><b>Screen Size:</b><span id="tv-size"></span></div>
+                    <div><b>Energy Rating:</b><span id="tv-rating"></span></div>
+                    <div><b>Technology:</b><span id="tv-tech"></span></div>
+                </div>
+                <p id="tv-desc"></p>
+
+                <button commandfor="tv-dialog" command="close">Close</button>
+            </dialog>
         </section>
     </main>
 
@@ -69,10 +60,11 @@
         <p>
             ©️ <span id="footer-year"></span> - Ashish Emmanuel
             <br>
-            Disclaimer: This page includes AI generated content. The information section is generated by AI and is not our own work.
+            Disclaimer: This page includes AI generated content. All the television information and prices are generated by AI and is not our own work.
         </p>
     </footer>
 
 </body>
 <script src="./js/scripts.js"></script>
+<script src="./js/tv.js"></script>
 </html>
