@@ -7,5 +7,13 @@ svg.append("rect").attr("x", 10).attr("y", 10).attr("width", 414).attr("height",
 
 
 // Exercise 4.4
-d3.csv("./data/newDataTV.csv", d => ({ Brand_Reg: d.Brand_Reg, "Count(Model_No)": +d["Count(Model_No)"] }))
-    .then(d => { console.log(d) });
+d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Model_No)"] }))
+    .then(data => { 
+        console.log(data);
+        console.log(data.length);
+        console.log(d3.max(data, d => d.count));
+        console.log(d3.min(data, d => d.count));
+        console.log(d3.extent(data, d => d.count));
+
+        console.log(data.sort((a, b) => b.count - a.count));
+    });
