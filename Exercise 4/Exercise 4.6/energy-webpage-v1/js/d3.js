@@ -41,7 +41,13 @@ d3.csv("./data/newDataTV.csv", d => ({ brand: d.Brand_Reg, count: +d["Count(Mode
 
 // Exercise 4.5
 const createBarChart = data => {
-    const svg = d3.select("#e5 .responsive-svg-container").append("svg").attr("viewBox", "0 0 1200 1600").style("border", "1px solid black");
+    const width = 500;
+    const height = 1600;
+    const xScale = d3.scaleLinear()
+        .domain([0, 1310])
+        .range([0, width]);
+        
+    const svg = d3.select("#e5 .responsive-svg-container").append("svg").attr("viewBox", `0 0 ${width} ${height}`).style("border", "1px solid black");
     svg.selectAll("rect").data(data).join("rect")
         .attr("class", d => {
             console.log(d);
