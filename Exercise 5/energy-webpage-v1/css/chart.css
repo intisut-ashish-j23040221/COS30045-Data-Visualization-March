@@ -8,5 +8,5 @@
 svg {
   width: 100%;
   height: auto; /* Ensures height scales proportionally */
-  max-width: 100%; /* Prevents the SVG from overflowing its container */
+  /* max-width: 100%; Prevents the SVG from overflowing its container */
 }

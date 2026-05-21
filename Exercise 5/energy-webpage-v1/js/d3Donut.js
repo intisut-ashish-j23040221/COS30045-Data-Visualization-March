@@ -10,6 +10,7 @@ const createDonutChart = data => {
     // 2. Create the base SVG canvas
     const svg = d3.select(".responsive-svg-container.donutChart") // Change to your container ID
         .append("svg")
+        .attr("preserveAspectRatio", "xMidYMid meet")
         .attr("width", width / 2)
         .attr("height", 100);
 
