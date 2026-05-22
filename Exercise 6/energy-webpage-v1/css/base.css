@@ -11,3 +11,7 @@ button {
 button.active {
     background-color: var(--color-link-hover);
 }
+
+button:hover {
+    cursor: pointer;
+}

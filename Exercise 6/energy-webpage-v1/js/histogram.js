@@ -24,6 +24,8 @@ function createHistogram(data) {
     const group = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+    histogramGroup = group;
+
     // 4. Set up the X Scale (Linear scale across the range of energy values)
     xScale
         .domain([0, d3.max(data, d => d.energyConsumption) * 1.1]) // 10% headroom
@@ -66,20 +68,19 @@ function createHistogram(data) {
         .style("opacity", 0.8);
 
     // 9. Add frequency count labels directly above each bar
-    // group.selectAll(".bar-label")
-    //     .data(bins)
-    //     .enter()
-    //     .append("text")
-    //     .attr("class", "bar-label")
-    //     .attr("x", d => xScale(d.x0) + (xScale(d.x1) - xScale(d.x0)) / 2)
-    //     .attr("y", d => yScale(d.length) - 6)
-    //     .attr("text-anchor", "middle")
-    //     .style("font-family", "sans-serif")
-    //     .style("font-size", "10px")
-    //     .style("font-weight", "600")
-    //     .style("fill", "#333")
-    //     // Only display the text label if there is at least 1 item in the bin
-    //     .text(d => d.length > 0 ? d.length : "");
+    group.selectAll(".bar-label")
+        .data(bins)
+        .enter()
+        .append("text")
+        .attr("class", "bar-label")
+        .attr("x", d => xScale(d.x0) + (xScale(d.x1) - xScale(d.x0)) / 2)
+        .attr("y", d => yScale(d.length) - 6)
+        .attr("text-anchor", "middle")
+        .style("font-family", "sans-serif")
+        .style("font-size", "10px")
+        .style("font-weight", "600")
+        .style("fill", "#333")
+        .text(d => d.length > 0 ? d.length : "");
 
     // --- Titles and Axis Labels ---
     group.append("text")

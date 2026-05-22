@@ -7,5 +7,8 @@ d3.csv("./data/Ex6.csv", d => ({
     star: +d.star
 })).then(d => {
     createHistogram(d);
+    drawScatterPlot(d);
     populateFilters(d);
+    createTooltip(d);
+    handleMouseEvents()
 }).catch((e) => console.log)
